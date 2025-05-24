@@ -4,7 +4,7 @@ import { createContent, deleteContent, getAllContents,getContentById } from '../
 export const getContents = async (req:Request, res:Response,next: NextFunction):Promise<void> => {
 	try {
 		const contents = await getAllContents();
-		res.status(200).json({ message: "Contenidos obtenidos correctamente.", content: contents });
+		res.status(200).json(contents );
 	} catch (error:any) {
 		next(error.message)
 	}
@@ -14,7 +14,7 @@ export const addContent = async (req:Request, res:Response, next:NextFunction):P
 	try {
 		const {sectionId,
 	title,
-	description,
+	body,
 	type,
 	order,
 	isActive} = req.body;
@@ -25,13 +25,13 @@ export const addContent = async (req:Request, res:Response, next:NextFunction):P
 	const newContent = await createContent({
 		sectionId,
 		title,
-		description,
+		body,
 		type,
 		order,
 		isActive
 	})
 
-		res.status(200).json({ message: "Contenido creado correctamente.", content: newContent });
+		res.status(200).json({ message: "Felicitaciones. Haz creado un Contenido correctamente.", content: newContent });
 	} catch (error:any) {
 		next(error.message)
 	}

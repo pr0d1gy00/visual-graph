@@ -6,7 +6,7 @@ interface ContentInterfaces {
 
 	sectionId: number;
 	title?: string;
-	description?: string;
+	body?: string;
 	type: string;
 	order: number;
 	isActive: boolean;

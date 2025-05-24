@@ -1,4 +1,4 @@
-import Router from 'express';
+import {Router} from 'express';
 import { addSection, getSection, getSections, removeSection } from '../controllers/sectionController';
 
 const router = Router();
