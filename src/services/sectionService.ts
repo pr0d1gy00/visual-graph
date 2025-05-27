@@ -29,12 +29,12 @@ export const getAllSections = async()=>{
 
 export const createSection = async (data:SectionInterfaces)=>{
 	const slug = slugify(data.title, {lower:true});
-	const existUser = await prisma.section.findUnique({
+	const existUser = await prisma.user.findUnique({
 		where:{
 			id:data.userId
 		}
 	})
-
+	console.log(existUser)
 	if (!existUser) {
 		throw new Error("El usuario no existe.");
 	}
