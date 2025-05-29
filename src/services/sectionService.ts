@@ -22,8 +22,7 @@ export const getAllSections = async()=>{
 		});
 	} catch (error:any) {
 		console.error("Error al obtener las secciones:", error.message);
-		return error
-
+throw error;
 	}
 }
 
@@ -48,8 +47,7 @@ export const createSection = async (data:SectionInterfaces)=>{
 		});
 	} catch (error:any) {
 		console.error("Error al crear secciones:", error.message);
-		return error
-	}
+throw error;	}
 }
 export const getSectionById = async(id:number)=>{
 	try {
@@ -60,8 +58,7 @@ export const getSectionById = async(id:number)=>{
 		});
 	} catch (error:any) {
 		console.error("Error al obtener la seccion:", error.message);
-		return error
-
+throw error;
 	}
 }
 export const deleteSection = async(id:number)=>{
@@ -84,7 +81,6 @@ export const deleteSection = async(id:number)=>{
 		});
 	} catch (error:any) {
 		console.error("Error al eliminar la seccion:", error.message);
-		return error
-
+throw error;
 	}
 }

@@ -52,8 +52,7 @@ export const getContentById = async(id:number)=>{
 		})
 		} catch (error:any) {
 		console.error("Error al obtener el contenido:", error.message);
-				return error
-
+throw error;
 	}
 
 }
@@ -79,6 +78,5 @@ export const deleteContent = async(id:number)=>{
 		})
 	} catch (error:any) {
 		console.error("Error al eliminar el contenido:", error.message);
-				return error
-	}
+throw error;	}
 }
