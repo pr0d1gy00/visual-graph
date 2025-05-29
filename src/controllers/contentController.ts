@@ -69,7 +69,7 @@ const response = contents.map((item:ContentWithMedia) => ({
 }));
 		res.status(200).json(response );
 	} catch (error:any) {
-		next(error.message)
+		next(error)
 	}
 }
 
@@ -96,7 +96,7 @@ export const addContent = async (req:Request, res:Response, next:NextFunction):P
 
 		res.status(200).json({ message: "Felicitaciones. Haz creado un Contenido correctamente.", content: newContent });
 	} catch (error:any) {
-		next(error.message)
+		next(error)
 	}
 }
 
@@ -110,7 +110,7 @@ export const getContent = async(req:Request,res:Response,next: NextFunction):Pro
 		res.status(200).json({ message: "Contenido obtenido correctamente.", content: content });
 
 	} catch (error:any) {
-		next(error.message)
+		next(error)
 	}
 
 }
@@ -123,6 +123,6 @@ export const removeContent = async(req:Request,res:Response,next: NextFunction):
 		const deletedContent = await deleteContent(Number(id));
 		res.status(200).json({ message: "Contenido eliminado correctamente.", content: deletedContent });
 	} catch (error:any) {
-		next(error.message)
+		next(error)
 	}
 }

@@ -35,7 +35,7 @@ export interface MediaWithContent {
   content: Content;
 }
 
-export const uploadMedia = async (req: Request, res: Response) => {
+export const uploadMedia = async (req: Request, res: Response, next:NextFunction) => {
 	try {
 		console.log(req.file);
 		const file = req.file;
@@ -62,14 +62,11 @@ export const uploadMedia = async (req: Request, res: Response) => {
 			media
 		})
 	} catch (error:any) {
-		console.error("Error al subir el archivo:", error);
-		return res.status(500).json({
-			message:"Ha ocurrido un error inesperado. Por favor, intentalo de nuevo",
-			error:error.message
-		})
+				next(error)
+
 	}
 }
-export const getAllMedia = async (req: Request, res: Response) => {
+export const getAllMedia = async (req: Request, res: Response, next:NextFunction) => {
 	try {
 		const media = await prisma.media.findMany({
 			include:{
@@ -85,11 +82,8 @@ export const getAllMedia = async (req: Request, res: Response) => {
 		)
 	}
 	catch (error:any) {
-		console.error("Error al obtener el archivo:", error);
-		return res.status(500).json({
-			message:"Ha ocurrido un error inesperado. Por favor, intentalo de nuevo",
-			error:error.message
-		})
+				next(error)
+
 	}
 }
 export const getMediaByContent = async (req: Request, res: Response,next:NextFunction) => {
@@ -107,10 +101,6 @@ export const getMediaByContent = async (req: Request, res: Response,next:NextFun
 			media
 		)
 	}catch (error:any) {
-		console.error("Error al subir el archivo:", error);
-		return res.status(500).json({
-			message:"Ha ocurrido un error inesperado. Por favor, intentalo de nuevo",
-			error:error.message
-		})
+		next(error)
 	}
 }

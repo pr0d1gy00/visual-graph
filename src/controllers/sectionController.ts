@@ -73,6 +73,7 @@ export const getSection = async (
 		const { id } = req.params;
 		if (!id) {
 			res.status(400).json({ message: "El id es requerido" });
+			return
 		}
 		const section = await getSectionById(Number(id));
 		res.status(201).json(section);

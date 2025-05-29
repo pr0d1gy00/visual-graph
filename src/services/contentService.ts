@@ -37,9 +37,8 @@ export const createContent = async (data:ContentInterfaces)=>{
 			})
 		} catch (error:any) {
 			console.error("Error al crear contenido:", error.message);
-			throw new Error(
-				error.message || "No se pudo crear el contenido"
-			);
+					return error
+
 		}
 
 }
@@ -53,9 +52,8 @@ export const getContentById = async(id:number)=>{
 		})
 		} catch (error:any) {
 		console.error("Error al obtener el contenido:", error.message);
-		throw new Error(
-			error.message || "No se pudo obtener el contenido"
-		);
+				return error
+
 	}
 
 }
@@ -81,8 +79,6 @@ export const deleteContent = async(id:number)=>{
 		})
 	} catch (error:any) {
 		console.error("Error al eliminar el contenido:", error.message);
-		throw new Error(
-			error.message || "No se pudo eliminar el contenido"
-		);
+				return error
 	}
 }

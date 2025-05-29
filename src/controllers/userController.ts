@@ -6,7 +6,7 @@ export const getUsers = async(req:Request, res:Response,next: NextFunction):Prom
 		const users = await getAllUsers();
 		res.status(200).json(users);
 	} catch (error:any) {
-		next(error.message)
+		next(error)
 	}
 }
 
@@ -20,7 +20,7 @@ export const addUser = async(req:Request, res:Response,next: NextFunction):Promi
 		const newUser = await createUser({name,email,passwordHash,role})
 		res.status(201).json(newUser);
 	} catch (error:any) {
-		next(error.message)
+		next(error)
 
 	}
 }
@@ -37,7 +37,7 @@ export const getUser = async (req:Request,res:Response,next: NextFunction):Promi
 		}
 		res.status(200).json(user);
 	}  catch (error: any) {
-		next(error.message)
+		next(error)
 	}
 }
 
@@ -50,7 +50,7 @@ export const removeUser = async(req:Request,res:Response,next: NextFunction):Pro
 		const deletedUser = await deleteUser(Number(id));
 		res.status(200).json({ message: "Usuario eliminado correctamente.", user: deletedUser });
 	} catch (error:any) {
-		next(error.message)
+		next(error)
 
 	}
 }

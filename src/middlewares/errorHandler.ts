@@ -11,7 +11,7 @@ export const errorHandler = (
 
 	let statusCode = 500;
 	let message =
-		"Ha ocurrido un error inesperado. Por favor, intentalo de nuevo";
+    error.message || "Ha ocurrido un error inesperado. Por favor, intentalo de nuevo";
 	let errors: any[] = [];
 
 	if (error instanceof Prisma.PrismaClientKnownRequestError) {

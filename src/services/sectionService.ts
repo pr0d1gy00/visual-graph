@@ -22,7 +22,7 @@ export const getAllSections = async()=>{
 		});
 	} catch (error:any) {
 		console.error("Error al obtener las secciones:", error.message);
-		throw error
+		return error
 
 	}
 }
@@ -31,6 +31,7 @@ export const createSection = async (data:SectionInterfaces)=>{
 	const slug = slugify(data.title, {lower:true});
 	const existUser = await prisma.user.findUnique({
 		where:{
+			isActive:true,
 			id:data.userId
 		}
 	})
@@ -47,7 +48,7 @@ export const createSection = async (data:SectionInterfaces)=>{
 		});
 	} catch (error:any) {
 		console.error("Error al crear secciones:", error.message);
-		throw error
+		return error
 	}
 }
 export const getSectionById = async(id:number)=>{
@@ -59,7 +60,7 @@ export const getSectionById = async(id:number)=>{
 		});
 	} catch (error:any) {
 		console.error("Error al obtener la seccion:", error.message);
-		throw error
+		return error
 
 	}
 }
@@ -83,7 +84,7 @@ export const deleteSection = async(id:number)=>{
 		});
 	} catch (error:any) {
 		console.error("Error al eliminar la seccion:", error.message);
-		throw error
+		return error
 
 	}
 }
