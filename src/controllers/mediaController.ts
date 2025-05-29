@@ -69,6 +69,9 @@ export const uploadMedia = async (req: Request, res: Response, next:NextFunction
 export const getAllMedia = async (req: Request, res: Response, next:NextFunction) => {
 	try {
 		const media = await prisma.media.findMany({
+			where:{
+				isActive:true
+			},
 			include:{
 				content: true
 			}
