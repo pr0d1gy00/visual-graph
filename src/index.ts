@@ -1,8 +1,8 @@
 import express from "express";
-import UserRoutes from "../src/routes/userRoutes";
-import SectionRoutes from "../src/routes/sectionRoutes";
-import ContentRoutes from "../src/routes/contentRoutes";
-import RelationsContents from "../src/routes/realtionsContentsRoutes";
+import UserRoutes from "./routes/userRoutes";
+import SectionRoutes from "./routes/sectionRoutes";
+import ContentRoutes from "./routes/contentRoutes";
+import RelationsContents from "./routes/realtionsContentsRoutes";
 import cors from "cors"; // Importar cors
 import { errorHandler } from "./middlewares/errorHandler";
 import MediaRoutes from "./routes/mediaRoutes";
