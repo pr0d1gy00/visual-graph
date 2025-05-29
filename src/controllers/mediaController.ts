@@ -4,6 +4,37 @@ import { PrismaClient } from "@prisma/client";
 
 const  prisma = new PrismaClient();
 
+export interface Content {
+id: number;
+    type: string;
+    isActive: boolean;
+    createdAt: Date;
+    sectionId: number;
+    title: string | null;
+    body: string | null;
+    order: number;
+    animationClass: string | null;
+styleConfig: string | number | object | boolean | null;
+    updatedAt: Date;
+}
+
+export interface MediaWithContent {
+  id: number;
+  contentId: number;
+  url: string;
+  type: string;
+  altText: string | null;
+  caption: string | null;
+  width: number | null;
+  height: number | null;
+  duration: number | null;
+  fileSize: number | null;
+  thumbnailUrl: string | null;
+  isActive: boolean;
+  createdAt: Date; // o Date si tu backend lo maneja así
+  content: Content;
+}
+
 export const uploadMedia = async (req: Request, res: Response) => {
 	try {
 		console.log(req.file);
@@ -45,9 +76,9 @@ export const getAllMedia = async (req: Request, res: Response) => {
 				content: true
 			}
 		});
-		const response = media.map(item=>({
+		const response = media.map((item:MediaWithContent)=>({
 			...item,
-			content: item.content ? [item.content] : [],
+			content: item.content ?? [],
 		}))
 		return res.status(200).json(
 			response
