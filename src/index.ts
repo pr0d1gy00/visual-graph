@@ -18,8 +18,7 @@ app.use("/api/visualgraph/users",UserRoutes)
 app.use("/api/visualgraph/section",SectionRoutes);
 app.use("/api/visualgraph/media", MediaRoutes);
 app.use("/api/visualgraph/relation", RelationsContents);
-app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
-
+app.use(express.static(path.join(__dirname, "../public")));
 app.use(errorHandler);
 const PORT = process.env.PORT || 3001;
 
