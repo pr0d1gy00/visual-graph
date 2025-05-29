@@ -10,8 +10,15 @@ import path from "path";
 
 const app = express()
 
-app.use(cors())
-app.use(express.json()); // Middleware para analizar JSON
+app.use(cors({
+  origin: [
+    "https://visual-graph-front.vercel.app",
+    "http://localhost:3000"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));app.use(express.json()); // Middleware para analizar JSON
 
 app.use("/api/visualgraph/content",ContentRoutes)
 app.use("/api/visualgraph/users",UserRoutes)
