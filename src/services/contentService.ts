@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-interface ContentInterfaces {
+export interface ContentInterfaces {
 
 	sectionId: number;
 	title?: string;

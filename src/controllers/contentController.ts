@@ -1,13 +1,72 @@
 import { Request,Response, NextFunction} from "express";
 import { createContent, deleteContent, getAllContents,getContentById } from '../services/contentService';
+import { ContentRelation } from "@prisma/client";
 
+export interface Media {
+  id: number;
+    type: string;
+    isActive: boolean;
+    createdAt: Date;
+    contentId: number;
+    url: string;
+    altText: string | null;
+    caption: string | null;
+    width: number | null;
+    height: number | null;
+    duration: number | null;
+    fileSize: number | null;
+    thumbnailUrl: string | null;
+}[]
+
+export interface ContentWithMedia {
+  id: number;
+  sectionId: number;
+  title: string | null;
+  body: string | null;
+  type: string;
+  order: number;
+  animationClass: string | null;
+styleConfig: string | number | object | boolean | null;
+  isActive: boolean;
+  createdAt: Date; // Si usas Date en tu backend, cámbialo a Date
+  updatedAt: Date; // Si usas Date en tu backend, cámbialo a Date
+  media: Media[];
+}
+export interface Section {
+  id: number;
+  title: string;
+  description?: string | null;
+  distribution: string;
+  isPublished: boolean;
+  order: number;
+  animationClass?: string | null;
+  slug?: string | null;
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  userId: number;
+  user: {
+	id: number;
+	name: string;
+	email: string;
+	passwordHash: string;
+	role:string;
+	isActive: boolean;
+	createdAt: string;
+	updatedAt: string;
+  };
+  contents: ContentWithMedia[];
+  metadata: {
+	[key: string]: string;
+  };
+}
 export const getContents = async (req:Request, res:Response,next: NextFunction):Promise<void> => {
 	try {
 		const contents = await getAllContents();
-		const response = contents.map(item=>({
-			...item,
-			content: item.media ? [item.media] : [],
-		}))
+const response = contents.map((item:ContentWithMedia) => ({
+    ...item,
+    content: item.media ?? [],
+}));
 		res.status(200).json(response );
 	} catch (error:any) {
 		next(error.message)
