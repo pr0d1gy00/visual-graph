@@ -4,7 +4,11 @@ import { createContent, deleteContent, getAllContents,getContentById } from '../
 export const getContents = async (req:Request, res:Response,next: NextFunction):Promise<void> => {
 	try {
 		const contents = await getAllContents();
-		res.status(200).json(contents );
+		const response = contents.map(item=>({
+			...item,
+			content: item.media ? [item.media] : [],
+		}))
+		res.status(200).json(response );
 	} catch (error:any) {
 		next(error.message)
 	}

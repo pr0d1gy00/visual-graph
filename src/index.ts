@@ -2,6 +2,7 @@ import express from "express";
 import UserRoutes from "../src/routes/userRoutes";
 import SectionRoutes from "../src/routes/sectionRoutes";
 import ContentRoutes from "../src/routes/contentRoutes";
+import RelationsContents from "../src/routes/realtionsContentsRoutes";
 import cors from "cors"; // Importar cors
 import { errorHandler } from "./middlewares/errorHandler";
 import MediaRoutes from "./routes/mediaRoutes";
@@ -16,6 +17,7 @@ app.use("/api/visualgraph/content",ContentRoutes)
 app.use("/api/visualgraph/users",UserRoutes)
 app.use("/api/visualgraph/section",SectionRoutes);
 app.use("/api/visualgraph/media", MediaRoutes);
+app.use("/api/visualgraph/relation", RelationsContents);
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 app.use(errorHandler);

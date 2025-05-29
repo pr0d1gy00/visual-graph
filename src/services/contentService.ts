@@ -14,7 +14,13 @@ interface ContentInterfaces {
 
 export const getAllContents= async()=>{
 	try {
-		return await prisma.content.findMany();
+		return await prisma.content.findMany({
+			where:{
+				isActive: true
+			},include:{
+				media: true,
+			}
+		});
 
 	} catch (error:any) {
 		console.error("Error al obtener todos los contenidos:", error.message);
