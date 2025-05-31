@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
+import { error } from "console";
 
 const prisma = new PrismaClient();
 
@@ -30,14 +31,15 @@ export const uploadStories = async (
 	next: NextFunction
 ): Promise<void> => {
 	try {
-		console.log(req.file);
+		console.log(req.body);
 		const file = req.file;
+
 		const data = JSON.parse(req.body.data);
-		const { storyId, type, order } = data;
+		const { storyId, type } = data;
 		if (!storyId) {
 			res.status(400).json({ message: "El id es requerido" });
 		}
-		if (!type || !order) {
+		if (!type || !storyId) {
 			res.status(400).json({
 				message: "todos los campos son obligatorios",
 			});
@@ -49,7 +51,11 @@ export const uploadStories = async (
 		}
 
 		const media = await prisma.storyMedia.create({
-			data,
+			data:{
+				...data,
+				url:`/uploads/${file?.filename}`,
+				order:1
+			}
 		});
 		res.status(201).json({
 			message: "Felicidades! Has subido un nuevo archivo",

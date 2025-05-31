@@ -28,8 +28,8 @@ app.use("/api/visualgraph/section",SectionRoutes);
 app.use("/api/visualgraph/media", MediaRoutes);
 app.use("/api/visualgraph/relation", RelationsContents);
 app.use("/api/visualgraph/stories",StoriesRoutes)
-app.use("/aoi/visualgraph/storiesMedia",StoriesMediaRoutes)
-app.use(express.static(path.join(__dirname, "../public")));
+app.use("/api/visualgraph/storiesMedia",StoriesMediaRoutes)
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 app.use(errorHandler);
 const PORT = process.env.PORT || 3001;
 

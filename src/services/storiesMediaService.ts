@@ -5,7 +5,7 @@ export const uploadFile = async (file: Express.Multer.File) => {
 	try {
 		const storageFile: StorageEngine = multer.diskStorage({
 			destination: (req: Request, file: Express.Multer.File, cb: (error: Error | null, destination: string) => void) => {
-				cb(null, "public/stories/");
+				cb(null, "public/");
 			},
 			filename: (req: Request, file: Express.Multer.File, cb: (error: Error | null, filename: string) => void) => {
 				cb(null, `${Date.now()}-${file.originalname}`);
