@@ -3,6 +3,8 @@ import UserRoutes from "./routes/userRoutes";
 import SectionRoutes from "./routes/sectionRoutes";
 import ContentRoutes from "./routes/contentRoutes";
 import RelationsContents from "./routes/realtionsContentsRoutes";
+import StoriesRoutes from "./routes/storiesRoutes";
+import StoriesMediaRoutes from "./routes/storiesMediaRoutes";
 import cors from "cors"; // Importar cors
 import { errorHandler } from "./middlewares/errorHandler";
 import MediaRoutes from "./routes/mediaRoutes";
@@ -25,6 +27,8 @@ app.use("/api/visualgraph/users",UserRoutes)
 app.use("/api/visualgraph/section",SectionRoutes);
 app.use("/api/visualgraph/media", MediaRoutes);
 app.use("/api/visualgraph/relation", RelationsContents);
+app.use("/api/visualgraph/stories",StoriesRoutes)
+app.use("/aoi/visualgraph/storiesMedia",StoriesMediaRoutes)
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(errorHandler);
 const PORT = process.env.PORT || 3001;

@@ -17,7 +17,7 @@ model User {
   lastLogin    DateTime?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @default(now())
-
+  Stories      Story[]
   sections     Section[]
 }
 
@@ -90,7 +90,26 @@ model ContentRelation {
   parentContent    Content  @relation("ParentRelations", fields: [parentContentId], references: [id])
   childContent     Content  @relation("ChildRelations", fields: [childContentId], references: [id])
 }
+model Story {
+  id          Int         @id @default(autoincrement())
+  title       String?
+  isActive    Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  expiresAt   DateTime    @default(now())
+  media       StoryMedia[]
+  userId      Int
+  user        User        @relation(fields: [userId], references: [id])
+}
 
+model StoryMedia {
+  id          Int         @id @default(autoincrement())
+  storyId     Int
+  story       Story       @relation(fields: [storyId], references: [id])
+  url         String
+  type        String      @default("image") // image | video | gif
+  duration    Int?        // solo para videos
+  order       Int         // orden de aparición dentro de la historia
+}
 model Metadata {
   id         Int      @id @default(autoincrement())
   contentId  Int?

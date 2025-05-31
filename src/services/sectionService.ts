@@ -84,3 +84,33 @@ export const deleteSection = async(id:number)=>{
 throw error;
 	}
 }
+
+export const getAllSectionsWithContents = async () => {
+	try {
+		const section = await prisma.section.findMany({
+			where:{
+				isActive:true,
+			},
+			include:{
+				contents: {
+					where: {
+						isActive: true,
+					},
+					orderBy:{
+						order:"asc"
+					},
+					include:{
+						media:{
+							where:{
+								isActive:true
+							},
+						}
+					}
+
+			}
+	}})
+	} catch (error:any) {
+		console.error("Error al eliminar la seccion:", error.message);
+		throw error;
+	}
+}

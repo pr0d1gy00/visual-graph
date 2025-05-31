@@ -62,7 +62,7 @@ export const uploadMedia = async (req: Request, res: Response, next:NextFunction
 			media
 		})
 	} catch (error:any) {
-				next(error)
+		next(error)
 
 	}
 }

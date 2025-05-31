@@ -5,7 +5,7 @@ const router = Router();
 
 router.get("/", getUsers);
 router.post("/createUser",addUser);
-router.get("/byId/:id", getUser); // Obtener un usuario por ID
-router.delete("/deleteUser/:id",removeUser); // Eliminar (desactivar) un usuario
+router.get("/byId/:id", getUser);
+router.delete("/deleteUser/:id",removeUser);
 
 export default router
