@@ -18,7 +18,6 @@ const app = express()
 
 app.use(cors({
   origin: [
-    'https://visualgraphagency.com/backend/visual-graph',
     "https://visual-graph-front.vercel.app",
     "http://localhost:3000"
   ],
