@@ -72,6 +72,11 @@ export const getAllStories = async (
 ): Promise<void> => {
 	try {
 		const media = await prisma.storyMedia.findMany({
+			where:{
+				story: {
+					isActive: true,
+				}
+			},
 			include: {
 				story: true,
 			},

@@ -12,9 +12,7 @@ export const getAllStories = async () => {
 		return await prisma.story.findMany({
 			where: {
 
-				expiresAt: {
-      gt:new Date(), // Solo historias no expiradas
-    }
+				isActive: true
 			},
 			include: {
 				media: true
