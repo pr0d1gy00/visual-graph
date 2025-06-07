@@ -3,6 +3,7 @@ import {
 	createSection,
 	deleteSection,
 	getAllSections,
+	getAllSectionsWithContents,
 	getSectionById,
 } from "../services/sectionService";
 
@@ -93,3 +94,15 @@ export const getSections = async (
 		next(error)
 	}
 };
+export const getSectionWithContentsController = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+):Promise<void> => {
+	try {
+		const sections = await getAllSectionsWithContents();
+		res.status(201).json(sections);
+} catch (error: any) {
+		next(error)
+	}
+}

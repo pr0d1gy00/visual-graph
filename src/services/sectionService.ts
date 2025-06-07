@@ -87,7 +87,7 @@ throw error;
 
 export const getAllSectionsWithContents = async () => {
 	try {
-		const section = await prisma.section.findMany({
+		const sections = await prisma.section.findMany({
 			where:{
 				isActive:true,
 			},
@@ -108,7 +108,17 @@ export const getAllSectionsWithContents = async () => {
 					}
 
 			}
+
 	}})
+
+		 const sectionFiltered = sections.filter(section => {
+            if (section.distribution === "grid images") {
+                return section.contents.length >= 10;
+            }
+            return true; // Incluye las demás secciones normalmente
+        });
+
+        return sectionFiltered;
 	} catch (error:any) {
 		console.error("Error al eliminar la seccion:", error.message);
 		throw error;
